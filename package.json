@@ -1,7 +1,7 @@
 {
   "name": "voronoi-studio",
   "version": "2.0.0",
-  "description": "voronoi studio web app to present an aesthetic and purposeful experience",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
