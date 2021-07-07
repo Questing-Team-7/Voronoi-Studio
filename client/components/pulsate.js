@@ -1,7 +1,6 @@
 const chart = {
 	*render(selector, height, width, cellCount) {
 		const canvas = d3.select(selector);
-		console.log(canvas);
 		const n = 200;
 		const context = canvas.node().getContext("2d");
 		const positions = Float64Array.from(
@@ -15,7 +14,6 @@ const chart = {
 			width - 0.5,
 			height - 0.5,
 		]);
-
 		while (true) {
 			context.fillStyle = "#ffffff33";
 			context.fillRect(0, 0, width, height);
@@ -27,7 +25,7 @@ const chart = {
 				if (positions[i] < 0) positions[i] += size;
 				else if (positions[i] > size) positions[i] -= size;
 				velocities[i] +=
-					0.1 * (Math.random() - 0.5) - 0.01 * velocities[i]; //alter first decimal to change speed of vornois
+					0.2 * (Math.random() - 0.5) - 0.01 * velocities[i];
 			}
 
 			context.beginPath();

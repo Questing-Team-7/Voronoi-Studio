@@ -46,20 +46,8 @@ class App extends React.Component {
 			<div>
 				<Navbar />
 				<Routes />
-				<canvas
-					id="canvas1"
-					width="960"
-					height="500"
-					onMouseEnter={() => this.chartRender.next()}
-					onMouseLeave={() => this.chartRender.next()}
-				></canvas>
-				<canvas
-					id="canvas2"
-					width="960"
-					height="500"
-					onMouseEnter={() => this.chartRender.next()}
-					onMouseLeave={() => this.chartRender.next()}
-				></canvas>
+				<canvas id="canvas1" width="960" height="500"></canvas>
+				<canvas id="canvas2" width="960" height="500"></canvas>
 				<svg id="svg1" width="960" height="500"></svg>
 				<p>
 					Sed ut perspiciatis unde omnis iste natus error sit
