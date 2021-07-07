@@ -47,4 +47,4 @@ const ArtPieces = db.define("artPieces", {
 	},
 });
 
-module.exports = ArtPieces
+module.exports = ArtPieces;
