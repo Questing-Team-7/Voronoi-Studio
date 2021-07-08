@@ -1,4 +1,3 @@
-// const d3=require('d3')
 import womenByWomen from "../../script/artdata/womenByWomen";
 const container = {};
 container.render = (selector, cellCount) => {
@@ -28,20 +27,6 @@ container.render = (selector, cellCount) => {
     ]);
   const defs = svg.append("svg:defs");
 
-  // const defs = svg.append("svg:defs");
-  // womenByWomen.forEach((painting, index) => {
-  // 	defs.append("svg:pattern")
-  // 		.attr("id", `painting${index}`)
-  // 		.attr("width", 500) //in pixels
-  // 		.attr("height", 400) //in pixels
-  // 		.attr("patternUnits", "userSpaceOnUse")
-  // 		.append("svg:image")
-  // 		.attr("xlink:href", painting.primaryImageSmall)
-  // 		.attr("width", 500)
-  // 		.attr("height", 400)
-  // 		.attr("x", 0)
-  // 		.attr("y", 0);
-  // });
   womenByWomen.forEach((painting, index) => {
     defs
       .append("svg:pattern")
@@ -58,7 +43,6 @@ container.render = (selector, cellCount) => {
       .attr("height", "75%");
   });
   const color = d3.scaleOrdinal().range(d3.schemeCategory20);
-
   //selects all the children of SVG's containers
   const circle = svg
     .selectAll("g")
@@ -114,25 +98,39 @@ container.render = (selector, cellCount) => {
       return color(i);
     });
 
-  function moveCircles() {
-    circles = circles.map(function () {
+  function moveCircles(d) {
+   let newCircles = circles.map( circle => {
+	let random = 2
+	const trueOrFalse = Math.random() < 0.5
+	if(trueOrFalse) {
+		random = -random
+	}
       return {
-        x: Math.round(Math.random() * (width - radius * 2) + radius),
-        y: Math.round(Math.random() * (height - radius * 2) + radius),
+        x:  circle.x - random,
+        y: circle.y + random,
       };
     });
+	circles = newCircles
 
-    d3.selectAll("circle").each(function (i, d) {
-      d3.select(`.cell-${d}`)
-        .transition()
-        // .attr("cx", circles[d].x)
-        // .attr("cy", circles[d].y);
-    });
-
-    cell = cell.data(voronoi.polygons(circles)).attr("d", renderCell);
+    // d3.selectAll("circle").each(function (i, d) {
+    //   d3.select(`.cell-${d}`)
+    //     .transition()
+	// 	.duration(1000)
+    //     .attr("cx", 1)
+    //     .attr("cy", 1)
+	// 	.transition()
+	// 	.duration(1000)
+    // });
+    d3.selectAll("path")
+	.data(voronoi.polygons(circles))
+	.attr("d", renderCell)
+	.transition()
+	.duration(5000)
+	.ease(d3.easeElasticInOut)
   }
 
-  setInterval(moveCircles, 5000);
+  setInterval(moveCircles, 100);
+  
 
   function dragstarted(d) {
     d3.select(this).raise().classed("active", true);

@@ -1,6 +1,6 @@
 import womenByWomen from "../../script/artdata/womenByWomen";
 const chart = {
-	*render(selector, height, width, cellCount = 20) {
+	*render(selector, height, width, cellCount = 10) {
 		const canvas = d3.select(selector);
 		const n = cellCount;
 		const context = canvas.node().getContext("2d");
@@ -11,7 +11,7 @@ const chart = {
 			image.width = image.naturalWidth;
 			image.height = image.naturalHeight;
 			image.onload = function () {
-				patterns[index] = context.createPattern(image, "repeat");
+				patterns[index] = context.createPattern(image, "repeat-x");
 			};
 			return image;
 		});

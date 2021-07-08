@@ -2,12 +2,11 @@ import React from "react";
 import container from "./components/vornoi";
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
-
 import chart from "./components/pulsate";
 
 // import * as Scroll from 'react-scroll';
 import { animateScroll as scroll } from "react-scroll";
-// import { d3 } from "d3";
+import * as d3 from "d3";
 // import { Delaunay } from "d3-delaunay";
 // import { Delaunay } from "https://cdn.skypack.dev/d3-delaunay@6%22";
 
@@ -15,30 +14,25 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.scrollToTop = this.scrollToTop.bind(this);
-		this.chartRender1 = chart.render("#canvas1", 500, 960, 30);
-		this.chartRender2 = chart.render("#canvas2", 500, 960, 30);
-		this.state = { toggle: false };
+		// this.chartRender1 = chart.render("#canvas1", 500, 960, 30);
+		// this.chartRender2 = chart.render("#canvas2", 500, 960, 30);
+
 	}
 
 	componentDidMount() {
-		// container.render("#svg1", 10);
+		container.render("#svg1", 10);
 		// container.render("#svg2", 20);
 		// container.render("#svg3", 15);
 		// chart.generator("#canvas1", 500, 960, 30)
-
-		this.interval = setInterval(() => {
-			this.chartRender1.next();
-			this.chartRender2.next();
-		}, 10);
 	}
 	componentDidUpdate() {
-		this.chartRender.next();
+		// this.chartRender.next();
 	}
 	scrollToTop() {
 		scroll.scrollToTop();
 	}
 	componentWillUnmount() {
-		clearInterval(this.interval);
+
 	}
 
 	render() {
@@ -46,9 +40,9 @@ class App extends React.Component {
 			<div>
 				<Navbar />
 				<Routes />
-				<canvas id="canvas1" width="960" height="500"></canvas>
-				<canvas id="canvas2" width="960" height="500"></canvas>
-				<svg id="svg1" width="960" height="500"></svg>
+				{/* <canvas id="canvas1" width="960" height="500"></canvas>
+				<canvas id="canvas2" width="960" height="500"></canvas> */}
+				<svg id="svg1" width="800" height="500"></svg>
 				<p>
 					Sed ut perspiciatis unde omnis iste natus error sit
 					voluptatem accusantium doloremque laudantium, totam rem
