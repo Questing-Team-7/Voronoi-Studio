@@ -13,8 +13,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		container.render("#svg1", 30);
-		container.render("#svg2", 30)
+		container.render("#svg1", 30)
 	}
 	componentDidUpdate() {
 		// this.chartRender.next();
