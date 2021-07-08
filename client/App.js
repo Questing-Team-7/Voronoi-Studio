@@ -2,13 +2,7 @@ import React from "react";
 import container from "./components/vornoi";
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
-import chart from "./components/pulsate";
-
-// import * as Scroll from 'react-scroll';
 import { animateScroll as scroll } from "react-scroll";
-import * as d3 from "d3";
-// import { Delaunay } from "d3-delaunay";
-// import { Delaunay } from "https://cdn.skypack.dev/d3-delaunay@6%22";
 
 class App extends React.Component {
 	constructor() {
@@ -16,14 +10,11 @@ class App extends React.Component {
 		this.scrollToTop = this.scrollToTop.bind(this);
 		// this.chartRender1 = chart.render("#canvas1", 500, 960, 30);
 		// this.chartRender2 = chart.render("#canvas2", 500, 960, 30);
-
 	}
 
 	componentDidMount() {
 		container.render("#svg1", 30);
-		// container.render("#svg2", 20);
-		// container.render("#svg3", 15);
-		// chart.generator("#canvas1", 500, 960, 30)
+		container.render("#svg2", 30)
 	}
 	componentDidUpdate() {
 		// this.chartRender.next();
@@ -31,10 +22,6 @@ class App extends React.Component {
 	scrollToTop() {
 		scroll.scrollToTop();
 	}
-	componentWillUnmount() {
-
-	}
-
 	render() {
 		return (
 			<div>
@@ -60,7 +47,7 @@ class App extends React.Component {
 					voluptate velit esse quam nihil molestiae consequatur, vel
 					illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 				</p>
-				<svg id="svg2" width="960" height="500"></svg>
+				<svg id="svg2" width="800" height="500"></svg>
 				<p>
 					At vero eos et accusamus et iusto odio dignissimos ducimus
 					qui blanditiis praesentium voluptatum deleniti atque
@@ -78,7 +65,6 @@ class App extends React.Component {
 					reiciendis voluptatibus maiores alias consequatur aut
 					perferendis doloribus asperiores repellat.
 				</p>
-				<svg id="svg3" width="960" height="500"></svg>
 				<br />
 				<a onClick={() => this.scrollToTop()}>To the top!</a>
 			</div>

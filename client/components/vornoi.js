@@ -1,6 +1,6 @@
-import { easePoly, line } from "d3";
 import womenByWomen from "../../script/artdata/womenByWomen";
 const container = {};
+
 container.render = (selector, cellCount) => {
   var svg = d3.select(selector), //selects element tagged svg
     width = +svg.attr("width"), //accessing the width property
@@ -13,7 +13,6 @@ container.render = (selector, cellCount) => {
       y: Math.round(Math.random() * (height - radius * 2) + radius),
     };
   });
-
   const voronoi = d3
     .voronoi()
     .x(function (d) {
@@ -27,7 +26,6 @@ container.render = (selector, cellCount) => {
       [width + 1, height + 1],
     ]);
   const defs = svg.append("svg:defs");
-
   womenByWomen.forEach((painting, index) => {
     defs
       .append("svg:pattern")
@@ -36,7 +34,6 @@ container.render = (selector, cellCount) => {
       .attr("width", "100%") //in pixels//could this be changed to the width of the cell.
       .attr("height", "100%") //in pixels
       .attr("patternUnits", "objectBoundingBox")
-      // .style("fill-rule","evenodd")
       .append("svg:image")
       .attr("href", painting.primaryImageSmall)
       .attr("preserveAspectRatio", "xMidYMid slice")
@@ -73,7 +70,7 @@ container.render = (selector, cellCount) => {
       return "clip-" + i;
     })
     .append("use")
-	.attr("clipPathUnits", "objectBoundingBox")
+    .attr("clipPathUnits", "objectBoundingBox")
     .attr("xlink:href", function (d, i) {
       return "#cell-" + i;
     })
@@ -97,33 +94,31 @@ container.render = (selector, cellCount) => {
     .style("fill", "none");
 
   function moveCircles() {
-   let newCircles = circles.map( circle => {
-	let random = Math.floor(Math.random() + 10)
-	const trueOrFalse = Math.random() < 0.5
-	if(trueOrFalse) {
-		random = -random
-	}
-	console.log(circle)
-
+    let newCircles = circles.map((circle) => {
+      let random = Math.floor(Math.random() + 10);
+      const trueOrFalse = Math.random() < 0.5;
+      if (trueOrFalse) {
+        random = -random;
+      }
       return {
-        x:  circle.x + random,
+        x: circle.x + random,
         y: circle.y - random,
       };
     });
-	circles = newCircles
+
+    circles = newCircles;
     d3.selectAll("path")
-	.data(voronoi.polygons(circles))
-	.attr("d", renderCell)
-	.transition()
-	.delay(500)
-	.duration(5000)
-	.ease(d3.easePoly)
-	.on("end", moveCircles)
-}
+      .attr("d", renderCell)
+      .transition()
+      .data(voronoi.polygons(circles))
+      .delay(1000)
+      .duration(3000)
+      .ease(d3.easePoly)
+      .on("end", moveCircles);
+  }
+  setInterval(moveCircles, 100);
 
-setInterval(moveCircles, 300);
-
-function dragstarted(d) {
+  function dragstarted(d) {
     d3.select(this).raise().classed("active", true);
   }
 

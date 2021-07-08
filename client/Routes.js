@@ -1,19 +1,20 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-
+import container from "./components/vornoi";
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
-
+    container.render("#svg2", 30)
   }
 
   render() {
 
     return (
       <div>
+        	<svg id="svg2" width="800" height="500"></svg>
       </div>
     )
   }

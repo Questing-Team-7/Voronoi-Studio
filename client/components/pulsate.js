@@ -14,8 +14,7 @@ const chart = {
 				patterns[index] = context.createPattern(image, "repeat-x");
 			};
 			return image;
-		});
-		console.log(patterns);
+		});	
 		const positions = Float64Array.from(
 			{ length: n * 2 },
 			(_, i) => Math.random() * (i & 1 ? height : width)
@@ -27,12 +26,10 @@ const chart = {
 			width - 0.5,
 			height - 0.5,
 		]);
-		console.log(voronoi.cellPolygons());
 
 		while (true) {
 			context.fillStyle = "ffffff30";
 			context.fillRect(0, 0, width, height);
-			// context.fillStyle = "white";
 
 			for (let i = 0; i < positions.length; ++i) {
 				const size = i & 1 ? height : width;
@@ -53,16 +50,12 @@ const chart = {
 			// voronoi.update().render(context);
 			voronoi.renderBounds(context);
 			context.stroke();
-
 			context.beginPath();
 			voronoi.delaunay.renderPoints(context, 1);
 			context.fill();
-
 			yield context.canvas;
 		}
 	},
-};
-// const chart = { *generator(selector, height, width, cellCount){
-// }
+}
 
 export default chart;
