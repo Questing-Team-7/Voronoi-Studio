@@ -1,3 +1,4 @@
+import { easePoly, line } from "d3";
 import womenByWomen from "../../script/artdata/womenByWomen";
 const container = {};
 container.render = (selector, cellCount) => {
@@ -39,8 +40,8 @@ container.render = (selector, cellCount) => {
       .append("svg:image")
       .attr("href", painting.primaryImageSmall)
       .attr("preserveAspectRatio", "xMidYMid slice")
-      .attr("width", "75%")
-      .attr("height", "75%");
+      .attr("width", "100%")
+      .attr("height", "100%");
   });
   const color = d3.scaleOrdinal().range(d3.schemeCategory20);
   //selects all the children of SVG's containers
@@ -72,12 +73,11 @@ container.render = (selector, cellCount) => {
       return "clip-" + i;
     })
     .append("use")
+	.attr("clipPathUnits", "objectBoundingBox")
     .attr("xlink:href", function (d, i) {
       return "#cell-" + i;
     })
-    .style("fill", function (d, i) {
-      return color(i);
-    });
+    .style("fill", "none");
 
   circle
     .append("circle")
@@ -94,45 +94,34 @@ container.render = (selector, cellCount) => {
       return d.y;
     })
     .attr("r", radius)
-    .style("fill", function (d, i) {
-      return color(i);
-    });
+    .style("fill", "none");
 
-  function moveCircles(d) {
+  function moveCircles() {
    let newCircles = circles.map( circle => {
-	let random = 2
+	let random = Math.floor(Math.random() + 10)
+
 	const trueOrFalse = Math.random() < 0.5
 	if(trueOrFalse) {
 		random = -random
 	}
       return {
-        x:  circle.x - random,
+        x:  circle.x + random,
         y: circle.y + random,
       };
     });
 	circles = newCircles
-
-    // d3.selectAll("circle").each(function (i, d) {
-    //   d3.select(`.cell-${d}`)
-    //     .transition()
-	// 	.duration(1000)
-    //     .attr("cx", 1)
-    //     .attr("cy", 1)
-	// 	.transition()
-	// 	.duration(1000)
-    // });
     d3.selectAll("path")
 	.data(voronoi.polygons(circles))
 	.attr("d", renderCell)
 	.transition()
-	.duration(5000)
-	.ease(d3.easeElasticInOut)
-  }
+	.duration(600)
+	.ease(d3.easeBounce)
+	.on("end", moveCircles)
+}
 
-  setInterval(moveCircles, 100);
-  
+setTimeout(moveCircles);
 
-  function dragstarted(d) {
+function dragstarted(d) {
     d3.select(this).raise().classed("active", true);
   }
 
