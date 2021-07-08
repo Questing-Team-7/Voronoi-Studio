@@ -98,7 +98,7 @@ container.render = (selector, cellCount) => {
 
   function moveCircles() {
    let newCircles = circles.map( circle => {
-	let random = Math.floor(Math.random() + 10)
+	let random = Math.floor(Math.random() + 2)
 
 	const trueOrFalse = Math.random() < 0.5
 	if(trueOrFalse) {
