@@ -528,21 +528,21 @@ module.exports = [
     isHighlight: false,
     isPublicDomain: true,
   },
-  {
-    objectId: 11408,
-    title: "Self-portrait",
-    artistDisplayName: "Jacob Hart Lazarus",
-    artistGender: "",
-    primaryImage:
-      "https://images.metmuseum.org/CRDImages/ad/original/DP-15885-001.jpg",
-    primaryImageSmall:
-      "https://images.metmuseum.org/CRDImages/ad/web-large/DP-15885-001.jpg",
-    endDate: 1880,
-    country: "",
-    culture: "American",
-    isHighlight: false,
-    isPublicDomain: true,
-  },
+  // {
+  //   objectId: 11408,
+  //   title: "Self-portrait",
+  //   artistDisplayName: "Jacob Hart Lazarus",
+  //   artistGender: "",
+  //   primaryImage:
+  //     "https://images.metmuseum.org/CRDImages/ad/original/DP-15885-001.jpg",
+  //   primaryImageSmall:
+  //     "https://images.metmuseum.org/CRDImages/ad/web-large/DP-15885-001.jpg",
+  //   endDate: 1880,
+  //   country: "",
+  //   culture: "American",
+  //   isHighlight: false,
+  //   isPublicDomain: true,
+  // },
   {
     objectId: 11104,
     title: "Rats amongst the Barley Sheaves",

@@ -2,6 +2,7 @@ import React from "react";
 import container from "./components/vornoi";
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
+import american from "../script/artdata/american";
 
 // import chart from "./components/pulsate";
 
@@ -42,16 +43,36 @@ class App extends React.Component {
     );
 
     const velocities = new Float64Array(CELLCOUNT * 2);
-    //change positions & velocity here
+    console.log(velocities);
 
+    const array = [
+      -0.005134443438958725, 0.00289055593404024, 0.07703647839572869,
+      -0.038366408664902485, -0.01897559652241254, 0.011617604601184706,
+      -0.01891101462406182, 0.054875950436807264, 0.049800541836898575,
+      -0.0052087306196248575, -0.02225221046843715, -0.0025004768635072065,
+      0.011653079244827459, -0.06734214165045756, 0.007924870868614153,
+      0.08920470045678797, -0.010361622766227452, 0.09493800337336902,
+      -0.0037974372411119007, -0.004985142199129689, -0.0925075582488356,
+      -0.0736146176006868, -0.0885551177937491, 0.09610557149880505,
+      -0.0018764845805064657, 0.08750647218862327, 0.0929767722823811,
+      -0.08264167148471487, -0.03703797593395968, 0.08631850861580306,
+      -0.056181179826150986, 0.06004023800624525, 0.017161592954848936,
+      0.0014243328001326994, -0.06375860625170562, -0.04270549054227524,
+      -0.09319385443674136, 0.09979326113684493, 0.09946916181071407,
+      0.029856315892945996,
+    ];
+
+    //change positions & velocity here
+    console.log("before", positions);
     for (let i = 0; i < positions.length; ++i) {
       const size = i & 1 ? HEIGHT : WIDTH;
-      positions[i] += velocities[i];
-
+      positions[i] += array[i];
+      console.log(velocities[i]);
       if (positions[i] < 0) positions[i] += size;
       else if (positions[i] > size) positions[i] -= size;
-      velocities[i] += 0.2 * (Math.random() - 0.5) - 0.01 * velocities[i];
+      array[i] += 0.2 * (Math.random() - 0.5) - 0.01 * array[i];
     }
+    console.log("after", positions);
 
     const voronoi = new d3.Delaunay(positions).voronoi([
       0.5,
@@ -60,14 +81,73 @@ class App extends React.Component {
       HEIGHT - 0.5,
     ]);
 
-    const join = d3
-      .select("canvas")
-      .selectAll("custom")
-      .data(positions)
-      .enter()
-      .append("custom")
-      .attr("class", "cell");
-    // .attr("data", ); //pass in changed positions & image?
+    const databind = () => {
+      const join = d3.select("canvas").selectAll("custom").data(positions);
+
+      const enter = join
+        .enter()
+        .append("custom")
+        .attr("class", "cell")
+        .attr("data", 0);
+      // .attr("data", (d) => d) //move down
+      // .attr("fillStyle", (d, i) => {
+      //   //move down
+      //   return american[i].primaryImageSmall;
+      // });
+
+      join
+        .merge(enter)
+        .attr("data", (d) => d) //pass in changed positions & image?
+        .attr("fillStyle", (d, i) => {
+          return american[i].primaryImageSmall;
+        });
+
+      const exit = join
+        .exit()
+        .transition(900)
+        .attr("dat", 0)
+        .attr("fillStyle", "")
+        .remove();
+    };
+
+    databind();
+
+    const draw = () => {
+      // context.fillStyle = "ffffff30";
+      context.fillRect(0, 0, WIDTH, HEIGHT);
+
+      voronoi.update();
+      const elements = d3.selectAll(".cell");
+      elements.each((d, i, l) => {
+        //d = data, i = index , l = nodeList
+        const cell = d3.select(l[i]);
+        // console.log(cell.nodes()[0].outerHTML);
+        // console.log(cell.attr("fillStyle"));
+        const patterns = [];
+        let img = new Image();
+        // console.log(cell.attr("fillStyle"));
+        img.src = cell.attr("fillStyle");
+        img.onload = function () {
+          patterns[i] = context.createPattern(img, "repeat");
+        };
+        context.fillStyle = patterns[i % patterns.length];
+        context.beginPath();
+        voronoi.renderCell(i, context);
+        context.fill();
+      });
+
+      context.beginPath();
+      // voronoi.update().render(context);
+      voronoi.renderBounds(context);
+      context.stroke();
+
+      context.beginPath();
+      voronoi.delaunay.renderPoints(context, 1);
+      context.fill();
+
+      return context.canvas;
+    };
+    draw();
   }
 
   scrollToTop() {
