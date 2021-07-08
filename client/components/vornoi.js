@@ -95,7 +95,7 @@ container.render = (selector, cellCount) => {
 
   function moveCircles() {
     let newCircles = circles.map((circle) => {
-      let random = Math.floor(Math.random() + 10);
+      let random = Math.floor(Math.random() + 2);
       const trueOrFalse = Math.random() < 0.5;
       if (trueOrFalse) {
         random = -random;
@@ -111,8 +111,11 @@ container.render = (selector, cellCount) => {
     .data(voronoi.polygons(circles))
       .attr("d", renderCell)
       .transition()
-      .duration(650)
+      .duration(360)
+      .ease(d3.easePoly)
       .on("end", moveCircles);
+
+      cell = cell.data(voronoi.polygons(circles)).attr("d", renderCell);
   }
   setTimeout(moveCircles);
 
