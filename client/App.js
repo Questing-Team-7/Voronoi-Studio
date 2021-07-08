@@ -11,12 +11,8 @@ class App extends React.Component {
 		// this.chartRender1 = chart.render("#canvas1", 500, 960, 30);
 		// this.chartRender2 = chart.render("#canvas2", 500, 960, 30);
 	}
-
 	componentDidMount() {
 		container.render("#svg1", 30)
-	}
-	componentDidUpdate() {
-		// this.chartRender.next();
 	}
 	scrollToTop() {
 		scroll.scrollToTop();

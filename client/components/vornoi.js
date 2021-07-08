@@ -111,12 +111,10 @@ container.render = (selector, cellCount) => {
     .data(voronoi.polygons(circles))
       .attr("d", renderCell)
       .transition()
-      .delay(100)
-      .duration(8000)
-      .ease(d3.easePoly)
+      .duration(650)
       .on("end", moveCircles);
   }
-  setInterval(moveCircles, 250);
+  setTimeout(moveCircles);
 
   function dragstarted(d) {
     d3.select(this).raise().classed("active", true);
