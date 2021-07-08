@@ -40,7 +40,7 @@ container.render = (selector, cellCount) => {
       .append("svg:image")
       .attr("href", painting.primaryImageSmall)
       .attr("preserveAspectRatio", "xMidYMid slice")
-      .attr("width", "100%")
+      .attr("width", "90%")
       .attr("height", "100%");
   });
   const color = d3.scaleOrdinal().range(d3.schemeCategory20);
@@ -98,15 +98,16 @@ container.render = (selector, cellCount) => {
 
   function moveCircles() {
    let newCircles = circles.map( circle => {
-	let random = Math.floor(Math.random() + 2)
-
+	let random = Math.floor(Math.random() + 10)
 	const trueOrFalse = Math.random() < 0.5
 	if(trueOrFalse) {
 		random = -random
 	}
+	console.log(circle)
+
       return {
         x:  circle.x + random,
-        y: circle.y + random,
+        y: circle.y - random,
       };
     });
 	circles = newCircles
@@ -114,12 +115,13 @@ container.render = (selector, cellCount) => {
 	.data(voronoi.polygons(circles))
 	.attr("d", renderCell)
 	.transition()
-	.duration(600)
-	.ease(d3.easeBounce)
+	.delay(500)
+	.duration(5000)
+	.ease(d3.easePoly)
 	.on("end", moveCircles)
 }
 
-setTimeout(moveCircles);
+setInterval(moveCircles, 300);
 
 function dragstarted(d) {
     d3.select(this).raise().classed("active", true);

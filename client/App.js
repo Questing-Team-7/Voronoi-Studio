@@ -20,7 +20,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		container.render("#svg1", 10);
+		container.render("#svg1", 30);
 		// container.render("#svg2", 20);
 		// container.render("#svg3", 15);
 		// chart.generator("#canvas1", 500, 960, 30)
