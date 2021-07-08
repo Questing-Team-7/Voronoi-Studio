@@ -40,7 +40,19 @@ class App extends React.Component {
       { length: CELLCOUNT * 2 },
       (_, i) => Math.random() * (i & 1 ? HEIGHT : WIDTH)
     );
-    // const velocities = new Float64Array(CELLCOUNT * 2);
+
+    const velocities = new Float64Array(CELLCOUNT * 2);
+    //change positions & velocity here
+
+    for (let i = 0; i < positions.length; ++i) {
+      const size = i & 1 ? HEIGHT : WIDTH;
+      positions[i] += velocities[i];
+
+      if (positions[i] < 0) positions[i] += size;
+      else if (positions[i] > size) positions[i] -= size;
+      velocities[i] += 0.2 * (Math.random() - 0.5) - 0.01 * velocities[i];
+    }
+
     const voronoi = new d3.Delaunay(positions).voronoi([
       0.5,
       0.5,
@@ -48,9 +60,14 @@ class App extends React.Component {
       HEIGHT - 0.5,
     ]);
 
-    const join = d3.select("canvas").selectAll("custom").data(positions);
-
-    join.enter().append("custom").attr("class", "cell");
+    const join = d3
+      .select("canvas")
+      .selectAll("custom")
+      .data(positions)
+      .enter()
+      .append("custom")
+      .attr("class", "cell");
+    // .attr("data", ); //pass in changed positions & image?
   }
 
   scrollToTop() {
