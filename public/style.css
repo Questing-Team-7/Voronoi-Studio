@@ -1,9 +1,21 @@
 * {
   overflow: visible
 }
+.sticky {
+  background-color: red;
+  width: 100%;
+}
+
+p{
+  text-align: center;
+  margin: auto;
+  font-size: x-large;
+  width: 600px;
+}
 
 body {
   font-family: sans-serif;
+  margin: auto;
 }
 
 a {

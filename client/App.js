@@ -8,6 +8,7 @@ import womenByMen from "../script/artdata/femaleNudesByMen";
 import chart from "./components/pulsate";
 
 // import * as Scroll from 'react-scroll';
+import { Controller, Scene } from 'react-scrollmagic';
 import { animateScroll as scroll } from "react-scroll";
 // import { d3 } from "d3";
 // import { Delaunay } from "d3-delaunay";
@@ -54,9 +55,9 @@ class App extends React.Component {
 		return (
 			<div>
 				<Navbar />
-				<Routes />
-				{/* <svg id="svg1" width="960" height="500"></svg> */}
+				<Controller>
 				<canvas id="canvas3" width="960" height="500"></canvas>
+				<Scene duration = {1000} pin={true} enabled={true}>
 				<p>
 					Sed ut perspiciatis unde omnis iste natus error sit
 					voluptatem accusantium doloremque laudantium, totam rem
@@ -74,8 +75,14 @@ class App extends React.Component {
 					voluptate velit esse quam nihil molestiae consequatur, vel
 					illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 				</p>
-				<canvas id="canvas1" width="960" height="500"></canvas>
-				{/* <svg id="svg2" width="960" height="500"></svg> */}
+				</Scene>
+					<Scene duration = {1000} pin={true} enabled={true}>
+						<div>
+				<canvas className="sticky" id="canvas1" width="960" height="500"></canvas>
+				<div className="sticky">TESTING</div>
+				</div>
+				</Scene>
+				<Scene duration = {1000} pin={true} enabled={true}>
 				<p>
 					At vero eos et accusamus et iusto odio dignissimos ducimus
 					qui blanditiis praesentium voluptatum deleniti atque
@@ -93,8 +100,11 @@ class App extends React.Component {
 					reiciendis voluptatibus maiores alias consequatur aut
 					perferendis doloribus asperiores repellat.
 				</p>
+				</Scene>
+	
 				<canvas id="canvas2" width="960" height="500"></canvas>
-				{/* <svg id="svg3" width="960" height="500"></svg> */}
+			
+				</Controller>
 				<br />
 				<a onClick={() => this.scrollToTop()}>To the top!</a>
 			</div>
