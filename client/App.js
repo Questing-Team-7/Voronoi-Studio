@@ -9,6 +9,7 @@ import chart from "./components/pulsate";
 
 // import * as Scroll from 'react-scroll';
 import { Controller, Scene } from 'react-scrollmagic';
+import { Tween, Timeline } from 'react-gsap';
 import { animateScroll as scroll } from "react-scroll";
 // import { d3 } from "d3";
 // import { Delaunay } from "d3-delaunay";
@@ -55,8 +56,22 @@ class App extends React.Component {
 		return (
 			<div>
 				<Navbar />
+
+				<h1 id="title">VORONOI STUDIO</h1>
+
 				<Controller>
+				<Scene duration = {1000} pin={true} enabled={true}>
+				<Tween
+            position="0"
+            from={{
+              yPercent: -50,
+            }}
+            to={{
+                yPercent: 0,
+            }}>
 				<canvas id="canvas3" width="960" height="500"></canvas>
+				</Tween>
+				</Scene>	
 				<Scene duration = {1000} pin={true} enabled={true}>
 				<p>
 					Sed ut perspiciatis unde omnis iste natus error sit
@@ -76,13 +91,28 @@ class App extends React.Component {
 					illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 				</p>
 				</Scene>
-					<Scene duration = {1000} pin={true} enabled={true}>
-						<div>
+					<Scene duration = {1000} pin={true} enabled={true} triggerHook="onEnter">
+					{/* <Timeline
+          wrapper={<div className="parallax" />}
+        >
+						this timeline animation would make background images appear to move slower than foreground creating depth. */}
+					<Tween
+            position="0"
+            from={{
+              yPercent: -100,
+            }}
+            to={{
+                yPercent: -100,
+            }}
+          >
+						{/* this tween animation puts a delay on the scroll between the elements*/}
 				<canvas className="sticky" id="canvas1" width="960" height="500"></canvas>
 				<div className="sticky">TESTING</div>
-				</div>
+				</Tween>
+				{/* </Timeline> */}
 				</Scene>
 				<Scene duration = {1000} pin={true} enabled={true}>
+				{/* scene pins the given element to the screen for the number of scolled pixels from duration */}
 				<p>
 					At vero eos et accusamus et iusto odio dignissimos ducimus
 					qui blanditiis praesentium voluptatum deleniti atque
@@ -101,8 +131,16 @@ class App extends React.Component {
 					perferendis doloribus asperiores repellat.
 				</p>
 				</Scene>
-	
+				<Tween
+            position="0"
+            from={{
+              yPercent: -100,
+            }}
+            to={{
+                yPercent: 0,
+            }}>
 				<canvas id="canvas2" width="960" height="500"></canvas>
+				</Tween>
 			
 				</Controller>
 				<br />
