@@ -17,11 +17,13 @@ function Home () {
       element.querySelector("#front-page-voronoi-button"),
       {
         opacity: 0,
-        y: -20
+        y: -20,
+        x: 100
       },
       {
         opacity:1,
         y: 0,
+        x: 0,
         scrollTrigger: {
           trigger: element.querySelector("#front-page-voronoi"),
           start: "top center",
@@ -38,11 +40,13 @@ function Home () {
       element.querySelector("#lead-text-button"),
       {
         opacity: 0,
-        y: -20
+        y: -20,
+        x: 100
       },
       {
         opacity:1,
         y: 0,
+        x: 0,
         scrollTrigger: {
           trigger: element.querySelector(".lead"),
           start: "top center",
