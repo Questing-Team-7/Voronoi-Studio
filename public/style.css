@@ -19,7 +19,7 @@ h1{
   text-rendering: center;
 }
 
-p {
+.initial-text {
   margin-bottom: 500px;
   margin-top: 500px;
 }
@@ -44,8 +44,14 @@ p {
   float: right;
 }
 
+#carousel-artwork-link-button{
+  margin-top: 50px;
+  text-align: center;
+}
+
 #lead-text-button {
-  float: right;
+  margin-top: 50px;
+  text-align: center;
 }
 
 .footer {

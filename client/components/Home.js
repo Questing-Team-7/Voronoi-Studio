@@ -41,12 +41,12 @@ function Home () {
       {
         opacity: 0,
         y: -20,
-        x: 100
+        x: 1000
       },
       {
         opacity:1,
         y: 0,
-        x: 0,
+        x: 500,
         scrollTrigger: {
           trigger: element.querySelector(".lead"),
           start: "top center",
@@ -63,14 +63,39 @@ function Home () {
       element.querySelector("#enterBtn"),
       {
         opacity: 0,
-        y: -20
+        y: -20,
+        x: 100
       },
       {
         opacity:1,
         y: 0,
+        x: 0,
         scrollTrigger: {
           trigger: element.querySelector("#enterBtn"),
           start: "top center",
+          end: "bottom center",
+          scrub: true
+        }
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    const element = ref.current;
+    gsap.fromTo(
+      element.querySelector("#carousel-artwork-link-button"),
+      {
+        opacity: 0,
+        y: -20,
+        x: -500
+      },
+      {
+        opacity:1,
+        y: 0,
+        x: 500,
+        scrollTrigger: {
+          trigger: element.querySelector(".carousel"),
+          start: "center center",
           end: "bottom center",
           scrub: true
         }
@@ -83,6 +108,7 @@ function Home () {
     return (
       <div ref={ref} className="home-parent-div">
         <h1 className="display-1 text-center">Welcome to Voronoi Studio!</h1>
+        <div className="initial-text">
         <p className="lead text-center">
           Project Description: Lorem ipsum dolor sit amet. Lorem ipsum dolor sit. Sed ut perspiciatis unde omnis iste natus error sit
 					voluptatem accusantium doloremque laudantium, totam rem
@@ -100,8 +126,9 @@ function Home () {
 					voluptate velit esse quam nihil molestiae consequatur, vel
 					illum qui dolorem eum fugiat quo voluptas nulla pariatur?
           amet.
-          <button id="lead-text-button" onClick={console.log("clicked")}>CLICKME!</button>
         </p>
+        <button id="lead-text-button" onClick={console.log("clicked")}>CLICKME!</button>
+        </div>
         <div
           id="carouselExampleCaptions"
           className="carousel slide"
@@ -195,6 +222,7 @@ function Home () {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
+        <button id="carousel-artwork-link-button" onClick={console.log("clicked")}>CLICKME!</button>
 
         <div id="front-page-voronoi">
           <h4 >See our voronois</h4>
