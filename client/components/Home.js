@@ -127,7 +127,7 @@ function Home () {
 					illum qui dolorem eum fugiat quo voluptas nulla pariatur?
           amet.
         </p>
-        <button id="lead-text-button" onClick={console.log("clicked")}>CLICKME!</button>
+        <button id="lead-text-button" onClick={() => console.log("clicked")}>CLICKME!</button>
         </div>
         <div
           id="carouselExampleCaptions"
@@ -222,11 +222,11 @@ function Home () {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <img src="https://icons.iconarchive.com/icons/hadezign/hobbies/256/Art-icon.png" id="carousel-artwork-link-button" onClick={console.log("clicked")} />
+        <img src="https://icons.iconarchive.com/icons/hadezign/hobbies/256/Art-icon.png" id="carousel-artwork-link-button" onClick={() => console.log("clicked")} />
 
         <div id="front-page-voronoi">
           <h4 >See our voronois</h4>
-          <button id="front-page-voronoi-button" onClick={console.log("clicked")}>CLICKME!</button>
+          <button id="front-page-voronoi-button" onClick={() => console.log("clicked")}>CLICKME!</button>
         </div>
         <div id="enterBtn">
           <Button
