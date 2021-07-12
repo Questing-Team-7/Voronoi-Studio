@@ -222,7 +222,7 @@ function Home () {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <button id="carousel-artwork-link-button" onClick={console.log("clicked")}>CLICKME!</button>
+        <img src="https://icons.iconarchive.com/icons/hadezign/hobbies/256/Art-icon.png" id="carousel-artwork-link-button" onClick={console.log("clicked")} />
 
         <div id="front-page-voronoi">
           <h4 >See our voronois</h4>
