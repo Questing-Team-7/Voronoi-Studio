@@ -32,7 +32,7 @@ class Footer extends React.Component {
           </span>
         </div>
         <div className="names row justify-content-center text-center">
-        <p className="names text-center mt-4">
+        <div className="names text-center mt-4">
           All artworks provided by{" "}
           <a
             href="https://www.metmuseum.org/blogs/now-at-the-met/2018/met-collection-api"
@@ -41,7 +41,7 @@ class Footer extends React.Component {
           >
             Metropolitan API
           </a>{" "}
-        </p>
+        </div>
           <span className="names h3">Voronoi Studio</span>
         </div>
       </div>

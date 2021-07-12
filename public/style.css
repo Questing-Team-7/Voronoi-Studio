@@ -13,6 +13,16 @@ a {
   text-decoration: none;
 }
 
+h1{
+  width: 50px;
+  margin: auto;
+  text-rendering: center;
+}
+
+p {
+  margin-bottom: 500px;
+  margin-top: 500px;
+}
 /* nav a {
   display: inline-block;
   margin: 1em;
@@ -23,10 +33,24 @@ a {
   display: inline-block;
 } */
 
+#front-page-voronoi{
+  margin-bottom: 500px;
+  margin-top: 500px;
+  font-size: 75;
+  text-align: center;
+}
+
+#front-page-voronoi-button {
+  float: right;
+}
+
+#lead-text-button {
+  float: right;
+}
+
 .footer {
   background-color: #5f7c8c;
   height: 150px;
-
 }
 
 .names {

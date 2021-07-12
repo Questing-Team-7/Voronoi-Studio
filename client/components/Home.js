@@ -1,18 +1,102 @@
 import React from "react";
 import { Button } from "reactstrap";
 import Footer from "./Footer";
+import { Controller, Scene } from 'react-scrollmagic';
+import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-class Home extends React.Component {
-  constructor() {
-    super();
-  }
-  render() {
+// var scroll = window.requestAnimationFrame || function (callback){window.setTimeout,epit(callback, 1000/60)};
+
+function Home () {
+  gsap.registerPlugin(ScrollTrigger);
+  const ref = useRef(null);
+  useEffect(() => {
+    const element = ref.current;
+    gsap.fromTo(
+      element.querySelector("#front-page-voronoi-button"),
+      {
+        opacity: 0,
+        y: -20
+      },
+      {
+        opacity:1,
+        y: 0,
+        scrollTrigger: {
+          trigger: element.querySelector("#front-page-voronoi"),
+          start: "top center",
+          end: "bottom center",
+          scrub: true
+        }
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    const element = ref.current;
+    gsap.fromTo(
+      element.querySelector("#lead-text-button"),
+      {
+        opacity: 0,
+        y: -20
+      },
+      {
+        opacity:1,
+        y: 0,
+        scrollTrigger: {
+          trigger: element.querySelector(".lead"),
+          start: "top center",
+          end: "bottom center",
+          scrub: true
+        }
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    const element = ref.current;
+    gsap.fromTo(
+      element.querySelector("#enterBtn"),
+      {
+        opacity: 0,
+        y: -20
+      },
+      {
+        opacity:1,
+        y: 0,
+        scrollTrigger: {
+          trigger: element.querySelector("#enterBtn"),
+          start: "top center",
+          end: "bottom center",
+          scrub: true
+        }
+      }
+    );
+  }, []);
+
+
+
     return (
-      <div>
-        <h1 className="display-1 text-center">Welcome</h1>
+      <div ref={ref} className="home-parent-div">
+        <h1 className="display-1 text-center">Welcome to Voronoi Studio!</h1>
         <p className="lead text-center">
-          Project Description: Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+          Project Description: Lorem ipsum dolor sit amet. Lorem ipsum dolor sit. Sed ut perspiciatis unde omnis iste natus error sit
+					voluptatem accusantium doloremque laudantium, totam rem
+					aperiam, eaque ipsa quae ab illo inventore veritatis et
+					quasi architecto beatae vitae dicta sunt explicabo. Nemo
+					enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+					aut fugit, sed quia consequuntur magni dolores eos qui
+					ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+					qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+					velit, sed quia non numquam eius modi tempora incidunt ut
+					labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+					ad minima veniam, quis nostrum exercitationem ullam corporis
+					suscipit laboriosam, nisi ut aliquid ex ea commodi
+					consequatur? Quis autem vel eum iure reprehenderit qui in ea
+					voluptate velit esse quam nihil molestiae consequatur, vel
+					illum qui dolorem eum fugiat quo voluptas nulla pariatur?
           amet.
+          <button id="lead-text-button" onClick={console.log("clicked")}>CLICKME!</button>
         </p>
         <div
           id="carouselExampleCaptions"
@@ -50,9 +134,9 @@ class Home extends React.Component {
               />
               <div className="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
-                <p>
+                <h6>
                   Some representative placeholder content for the first slide.
-                </p>
+                </h6>
               </div>
             </div>
             <div className="carousel-item">
@@ -63,9 +147,9 @@ class Home extends React.Component {
               />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
-                <p>
+                <h6>
                   Some representative placeholder content for the second slide.
-                </p>
+                </h6>
               </div>
             </div>
             <div className="carousel-item">
@@ -76,9 +160,9 @@ class Home extends React.Component {
               />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
-                <p>
+                <h6>
                   Some representative placeholder content for the third slide.
-                </p>
+                </h6>
               </div>
             </div>
           </div>
@@ -107,6 +191,11 @@ class Home extends React.Component {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
+
+        <div id="front-page-voronoi">
+          <h4 >See our voronois</h4>
+          <button id="front-page-voronoi-button" onClick={console.log("clicked")}>CLICKME!</button>
+        </div>
         <div id="enterBtn">
           <Button
             className="d-block mx-auto mt-4 btn-large col-6 rounded-0 "
@@ -118,8 +207,7 @@ class Home extends React.Component {
         </div>
         <Footer />
       </div>
-    );
-  }
+    ); 
 }
 
 export default Home;
