@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import VoronoiForm from "./components/VoronoiForm";
 import SingleVoronoi from "./components/SingleVoronoi";
 import VoronoiExplanation from "./components/VoronoiExplanation";
+import Charts from "./components/Charts";
 
 /**
  * COMPONENT
@@ -21,6 +22,7 @@ class Routes extends Component {
 				<Navbar />
 				<Route exact path="/" component={Home} />
 				<Route exact path="/main" component={App} />
+				<Route exact path="/charts" component={Charts} />
 				<Route
 					exact
 					path="/womenbywomen"

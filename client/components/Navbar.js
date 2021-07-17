@@ -13,6 +13,9 @@ class Navbar extends React.Component {
       fingerprint
       </span>
         <div className = "menu flex-grow-1 d-flex flex-column justify-content-around">
+        <a href="/charts" className="mx-auto links-text">
+          Chart
+        </a>
         <a href="/" className="mx-auto links-text">
           Home
         </a>

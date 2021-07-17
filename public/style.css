@@ -296,3 +296,19 @@ canvas:hover {
 .noscroll {
   overflow: hidden;
 }
+
+#lollipop {
+  background-color: none;
+}
+
+.circlesGraph {
+  fill: #a63d40
+}
+
+.barGraphs {
+ fill: #fff8f0;
+}
+
+.barText {
+ fill: #fff8f0
+}
