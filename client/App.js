@@ -7,6 +7,7 @@ import { Controller, Scene } from "react-scrollmagic";
 import { Tween, Timeline } from "react-gsap";
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
+import Charts from "./components/Charts";
 
 class App extends React.Component {
   constructor() {
@@ -172,6 +173,7 @@ class App extends React.Component {
 
           </Scene>
           <Scene duration={"100%"} triggerHook={0.2} pin={true}>
+
             <Timeline
               target={
                 <p className="text-center mt-2 mb-3 mx-auto my-auto">
@@ -184,10 +186,17 @@ class App extends React.Component {
                   Art Sections were women, while 85% of the nudes featured in
                   the Met are of women.
                 </p>
+
+           
               }
             >
               <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} />
             </Timeline>
+          </Scene>
+          <Scene duration={"100%"} triggerHook={0.2} pin={true}>
+          <div>
+          <Charts />
+          </div>
           </Scene>
            {/* CANVAS3 */}
            <Scene duration={'100%'} pin={true} triggerHook={0.05}>

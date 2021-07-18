@@ -1,4 +1,4 @@
-var numbers = [10829, 14350, 2027]
+const numbers = [10829, 14350, 2027]
 
 const lollipop = {
     render(selector, height, width) {

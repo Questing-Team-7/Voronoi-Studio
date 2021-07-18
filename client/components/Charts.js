@@ -4,13 +4,16 @@ import lollipop from './graphd3'
 class Charts extends React.Component {
     constructor() {
         super()
+        this.state = {
+           numbers: [10829, 14350, 2027]
+        }
     }
     componentDidMount() {
         lollipop.render("#lollipop", 250, 500)
     }
 
     componentDidUpdate() {
-        lollipop.render()
+        lollipop.render("#lollipop", 250, 500)
     }
 
     render() {
