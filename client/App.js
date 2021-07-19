@@ -163,7 +163,7 @@ class App extends React.Component {
                   </Tween>
               
                     <Timeline target = { <h1 className="animate animation2">There are no paintings of nude men painted by women available in the Met API.</h1>}>
-                    <Tween from={{ top: '25%', left: -800}} to={{ left: 800, top: '25%' }} />
+                    <Tween from={{ top: '25%', left: -800}} to={{ left: 800, top: '25%' }} /> 
                     <Tween
                     from={{ opacity: 1}} to={{ opacity: -1}} />
                     </Timeline>
@@ -192,11 +192,6 @@ class App extends React.Component {
             >
               <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} />
             </Timeline>
-          </Scene>
-          <Scene duration={"100%"} triggerHook={0.2} pin={true}>
-          <div>
-          <Charts />
-          </div>
           </Scene>
            {/* CANVAS3 */}
            <Scene duration={'100%'} pin={true} triggerHook={0.05}>
