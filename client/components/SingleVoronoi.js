@@ -39,6 +39,9 @@ export default (props) => {
 				width="1000"
 				height="600"
 			></canvas>
+			<button onClick={() => chart.download("#single-voronoi")}>
+				donwload
+			</button>
 		</div>
 	);
 };
