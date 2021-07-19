@@ -13,6 +13,7 @@ class App extends React.Component {
 		super();
 		this.state = {};
 		this.scrollToTop = this.scrollToTop.bind(this);
+		this.setWindowDimensions = this.setWindowDimensions.bind(this);
 	}
 	async componentDidMount() {
 		const womenByMen = await this.getVoronoiPieces("Women By Men");
@@ -27,6 +28,11 @@ class App extends React.Component {
 			americanHighlights: americanHighlights,
 			unusualHighlights: unusualHighlights,
 		});
+		window.addEventListener("resize", this.windowResized, false);
+		this.setWindowDimensions();
+	}
+	setWindowDimensions() {
+		this.setState({ width: window.innerWidth, height: window.innerHeight });
 	}
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState !== this.state) {
@@ -69,6 +75,7 @@ class App extends React.Component {
 	}
 	componentWillUnmount() {
 		clearInterval(this.interval);
+		window.removeEventListener("resize", this.windowResized);
 	}
 
 	async getVoronoiPieces(title) {
@@ -77,7 +84,7 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div id="main">
+			<div id="main" className="container-fluid">
 				<div id="modal"></div>
 				<Controller>
 					<Scene duration={165} triggerHook={0.3} pin={true}>
@@ -139,8 +146,8 @@ class App extends React.Component {
 									<canvas
 										className="my-auto mx-auto"
 										id="canvas1"
-										width="900"
-										height="600"
+										width={this.state.width * 0.9}
+										height={this.state.height * 0.9}
 									></canvas>
 									<Timeline
 										target={
