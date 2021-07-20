@@ -159,13 +159,13 @@ class App extends React.Component {
           </Scene>
 
           {/*New Artist info*/}
-          <Scene duration={"100%"} triggerHook={0.1}   pin={true, {pushfollowers: false}} enabled={true}>
+          <Scene duration={"100%"} triggerHook={0.05}   pin={true, {pushfollowers: false}} enabled={true}>
           {(progress) => (
             <div className="mx-auto">
               <Timeline totalProgress={progress} paused>   
                 <Timeline target = { 
                 <div className="d-flex ms-5 me-5 mx-auto">
-                <img className="w-50 p-2" height="50%" width="auto" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Catharina_van_Hemessen_-_Portrait_of_a_Lady.jpg"></img>
+                <img className="w-50 my-auto p-2" height="50%" width="auto" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Catharina_van_Hemessen_-_Portrait_of_a_Lady.jpg"></img>
                 <p className="column p-3 my-auto paragraphsMain align-self-center" id="artist-description">
                  This piece is entitled Portrait of a Woman by <a style={{color: "#a63d40"}}href="https://en.wikipedia.org/wiki/Catharina_van_Hemessen">Catharina van Hemessen</a> painted in the mid-1500s. She is widely credited with with first self-portrait depicting an artist (of any gender) working at an easel. Her work is not available at the Met.
                 </p>
@@ -180,7 +180,7 @@ class App extends React.Component {
           )}
 
           </Scene>
-          <Scene duration={"100%"} triggerHook={0.15} pin={true}>
+          <Scene duration={"100%"} triggerHook={0.05} pin={true}>
           {(progress) => (
             <div className="mx-auto">
               <Timeline totalProgress={progress} paused>   
