@@ -1,4 +1,5 @@
 import renderModal from "./modal";
+import * as d3 from "d3";
 const chart = {
 	*render(selector, artData, cellCount = artData.length) {
 		const canvas = d3.select(selector);
